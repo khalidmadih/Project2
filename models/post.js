@@ -1,13 +1,20 @@
 module.exports = function(sequelize, DataTypes) {
-  var Post = sequelize.define("Post", {
-    title: {
+  var Yardsale = sequelize.define("Yardsale", {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
-    body: {
+    date: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    items: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
@@ -16,8 +23,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     category: {
       type: DataTypes.STRING,
-      defaultValue: "Personal"
+      defaultValue: "Yard Sale"
     }
   });
-  return Post;
+  return Yardsale;
 };

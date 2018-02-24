@@ -7,7 +7,7 @@ $(document).ready(function() {
   $(document).on("click", "button.delete", handlePostDelete);
   $(document).on("click", "button.edit", handlePostEdit);
   postCategorySelect.on("change", handleCategoryChange);
-  var posts;
+  var yardsales;
 
   // This function grabs posts from the database and updates the view
   function getPosts(category) {
@@ -15,10 +15,10 @@ $(document).ready(function() {
     if (categoryString) {
       categoryString = "/category/" + categoryString;
     }
-    $.get("/api/posts" + categoryString, function(data) {
-      console.log("Posts", data);
-      posts = data;
-      if (!posts || !posts.length) {
+    $.get("/api/yardsales" + categoryString, function(data) {
+      console.log("Yardsales", data);
+      yardsales = data;
+      if (!yardsales || !yardsales.length) {
         displayEmpty();
       }
       else {
@@ -31,7 +31,7 @@ $(document).ready(function() {
   function deletePost(id) {
     $.ajax({
       method: "DELETE",
-      url: "/api/posts/" + id
+      url: "/api/yardsales/" + id
     })
     .then(function() {
       getPosts(postCategorySelect.val());
@@ -45,14 +45,14 @@ $(document).ready(function() {
   function initializeRows() {
     blogContainer.empty();
     var postsToAdd = [];
-    for (var i = 0; i < posts.length; i++) {
-      postsToAdd.push(createNewRow(posts[i]));
+    for (var i = 0; i < yardsales.length; i++) {
+      postsToAdd.push(createNewRow(yardsales[i]));
     }
     blogContainer.append(postsToAdd);
   }
 
   // This function constructs a post's HTML
-  function createNewRow(post) {
+  function createNewRow(yardsale) {
     var newPostPanel = $("<div>");
     newPostPanel.addClass("panel panel-default");
     var newPostPanelHeading = $("<div>");
@@ -66,7 +66,7 @@ $(document).ready(function() {
     var newPostTitle = $("<h2>");
     var newPostDate = $("<small>");
     var newPostCategory = $("<h5>");
-    newPostCategory.text(post.category);
+    newPostCategory.text(yardsale.category);
     newPostCategory.css({
       float: "right",
       "font-weight": "700",
@@ -76,11 +76,11 @@ $(document).ready(function() {
     var newPostPanelBody = $("<div>");
     newPostPanelBody.addClass("panel-body");
     var newPostBody = $("<p>");
-    newPostTitle.text(post.title + " ");
-    newPostBody.text(post.body);
-    var formattedDate = new Date(post.createdAt);
-    formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-    newPostDate.text(formattedDate);
+    newPostTitle.text(yardsale.address + " ");
+    newPostBody.text(yardsale.items);
+    // var formattedDate = new Date(post.date + " ");
+    // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
+    newPostDate.text(yardsale.date + " ");
     newPostTitle.append(newPostDate);
     newPostPanelHeading.append(deleteBtn);
     newPostPanelHeading.append(editBtn);
@@ -89,7 +89,7 @@ $(document).ready(function() {
     newPostPanelBody.append(newPostBody);
     newPostPanel.append(newPostPanelHeading);
     newPostPanel.append(newPostPanelBody);
-    newPostPanel.data("post", post);
+    newPostPanel.data("yardsale", yardsale);
     return newPostPanel;
   }
 
@@ -99,7 +99,7 @@ $(document).ready(function() {
     var currentPost = $(this)
       .parent()
       .parent()
-      .data("post");
+      .data("yardsale");
     deletePost(currentPost.id);
   }
 
@@ -109,8 +109,8 @@ $(document).ready(function() {
     var currentPost = $(this)
       .parent()
       .parent()
-      .data("post");
-    window.location.href = "/cms?post_id=" + currentPost.id;
+      .data("yardsale");
+    window.location.href = "/cms?yardsale_id=" + currentPost.id;
   }
 
   // This function displays a messgae when there are no posts
@@ -118,7 +118,7 @@ $(document).ready(function() {
     blogContainer.empty();
     var messageh2 = $("<h2>");
     messageh2.css({ "text-align": "center", "margin-top": "50px" });
-    messageh2.html("No posts yet for this category, navigate <a href='/cms'>here</a> in order to create a new post.");
+    messageh2.html("No Yard Sales yet for this category, navigate <a href='/cms'>here</a> in order to submit a new Yard Sale.");
     blogContainer.append(messageh2);
   }
 
