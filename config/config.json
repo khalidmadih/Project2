@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Derrick#21",
+    "password": "1yenommaker",
     "database": "yardsale_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

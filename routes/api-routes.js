@@ -48,10 +48,20 @@ module.exports = function(app) {
   app.post("/api/yardsales", function(req, res) {
     console.log(req.body);
     db.Yardsale.create({
+
+      submitterName : req.body.submitterName,
+      yardDate: req.body.yardDate,
+      startTime : req.body.startTime,
+      endTime : req.body.endTime,
+      description : req.body.description,
       address: req.body.address,
-      date: req.body.date,
-      items: req.body.items,
+      city : req.body.city,
+      state : req.body.state,
+      zip : req.body.zip,
+      email : req.body.email,
+      secretCode: req.body.secretCode,
       category: req.body.category
+      
     })
     .then(function(dbYardsale) {
       res.json(dbYardsale);

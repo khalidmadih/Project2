@@ -1,3 +1,9 @@
+
+// changed file name blog.js to sale.js//
+
+
+
+
 $(document).ready(function() {
   /* global moment */
   // blogContainer holds all of our posts
