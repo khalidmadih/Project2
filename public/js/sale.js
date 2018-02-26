@@ -69,8 +69,14 @@ $(document).ready(function() {
     var editBtn = $("<button>");
     editBtn.text("EDIT");
     editBtn.addClass("edit btn btn-default");
-    var newPostTitle = $("<h2>");
+    var newPostName = $("<h2>");
+    var newPostAddress = $("<h2>");
+    var newPostCity = $("<p>");
+    var newPostState = $("<p>");
+    var newPostZip = $("<p>");
     var newPostDate = $("<small>");
+    var newPostStart = $("<small>");
+    var newPostEnd = $("<small>");
     var newPostCategory = $("<h5>");
     newPostCategory.text(yardsale.category);
     newPostCategory.css({
@@ -82,15 +88,23 @@ $(document).ready(function() {
     var newPostPanelBody = $("<div>");
     newPostPanelBody.addClass("panel-body");
     var newPostBody = $("<p>");
-    newPostTitle.text(yardsale.address + " ");
-    newPostBody.text(yardsale.items);
+    newPostName.text(yardsale.submitterName + " ");
+    newPostAddress.text(yardsale.address + " ");
+    newPostCity.text(yardsale.city + " ");
+    newPostState.text(yardsale.state + " ");
+    newPostZip.text(yardsale.zip + " ");
+    newPostBody.text(yardsale.description);
     // var formattedDate = new Date(post.date + " ");
     // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-    newPostDate.text(yardsale.date + " ");
-    newPostTitle.append(newPostDate);
+    newPostDate.text(yardsale.yardDate + " ");
+    newPostStart.text(yardsale.startTime + " ");
+    newPostEnd.text(yardsale.endTime + " ");
+    newPostAddress.append(newPostCity, newPostState, newPostZip, newPostDate);
+    // newPostCity.append(newPostState);
+    // newPostZip.append(newPostZip);
     newPostPanelHeading.append(deleteBtn);
     newPostPanelHeading.append(editBtn);
-    newPostPanelHeading.append(newPostTitle);
+    newPostPanelHeading.append(newPostAddress);
     newPostPanelHeading.append(newPostCategory);
     newPostPanelBody.append(newPostBody);
     newPostPanel.append(newPostPanelHeading);
@@ -116,7 +130,7 @@ $(document).ready(function() {
       .parent()
       .parent()
       .data("yardsale");
-    window.location.href = "/cms?yardsale_id=" + currentPost.id;
+    window.location.href = "/addSale?yardsale_id=" + currentPost.id;
   }
 
   // This function displays a messgae when there are no posts
@@ -124,7 +138,7 @@ $(document).ready(function() {
     blogContainer.empty();
     var messageh2 = $("<h2>");
     messageh2.css({ "text-align": "center", "margin-top": "50px" });
-    messageh2.html("No Yard Sales yet for this category, navigate <a href='/cms'>here</a> in order to submit a new Yard Sale.");
+    messageh2.html("No Yard Sales yet for this category, navigate <a href='/addSale'>here</a> in order to submit a new Yard Sale.");
     blogContainer.append(messageh2);
   }
 

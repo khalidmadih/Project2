@@ -11,9 +11,9 @@ module.exports = function(sequelize, DataTypes) {
                 len: [1]
             }
         },
-
+//changed datatype for yardDate, startTime and endTime to string for now to make it work - Derrick
         yardDate: {
-            type: DataTypes.DATEONLY,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
@@ -21,7 +21,7 @@ module.exports = function(sequelize, DataTypes) {
         },
 
         startTime: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]
@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
         },
 
         endTime: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [1]

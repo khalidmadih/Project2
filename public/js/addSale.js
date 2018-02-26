@@ -56,11 +56,20 @@ $(document).ready(function() {
 
         // Constructing a newPost object to hand to the database
         var newPost = {
+            submitterName: submitterNameInput.val().trim(),
+            yardDate: yardDateInput.val().trim(),
+            startTime: startTimeInput.val().trim(),
+            endTime: endTimeInput.val().trim(),
+            description: descriptionInput.val().trim(),
             address: addressInput.val().trim(),
+            city: cityInput.val().trim(),
+            state: stateInput.val().trim(),
+            zip: zipInput.val().trim(),
+            email: emailInput.val().trim(),
+            secretCode: secretCodeInput.val().trim(),
             // CHANGING DATE TO YARDDATE, MAY NEED TO CHANGE ON DATABASE???//
 
-            //date: dateInput.val().trim(),
-            yardDate: yardDateInput.val().trim(),
+            //date: dateInput.val().trim()
             //NO ITEMS INPUT, SHOULD WE CHANGE THIS TO DESCRIPTION???//
             //items: itemsInput.val().trim(),
             category: postCategorySelect.val()
@@ -90,11 +99,23 @@ $(document).ready(function() {
         $.get("/api/yardsales/" + id, function(data) {
             if (data) {
                 // If this post exists, prefill our cms forms with its data
+                submitterNameInput.val(data.submitterName);
+                yardDateInput.val(data.yardDate);
+                startTimeInput.val(data.startTime);
+                endTimeInput.val(data.endTime);
+                descriptionInput.val(data.description);
                 addressInput.val(data.address);
+                cityInput.val(data.city);
+                stateInput.val(data.state);
+                zipInput.val(data.zip);
+                emailInput.val(data.email);
+                secretCodeInput.val(data.secretCode);
+
+                // addressInput.val(data.address);
                 // CHANGING DATE TO YARDDATE, MAY NEED TO CHANGE ON DATABASE???//
 
                 // dateInput.val(data.date);
-                yardDateInput.val(data.yardDate);
+                // yardDateInput.val(data.yardDate);
                 //NO ITEMS INPUT SHOULD WE CHANGE THIS TO DESCRIPTION???//
                 //itemsInput.val(data.items);
                 postCategorySelect.val(data.category);
