@@ -6,7 +6,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Yard-Sailing App</title>
+  <title>Yard-Sale App</title>
   <!-- Latest compiled and minified CSS & JS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
@@ -15,6 +15,10 @@
 </head>
 
 <body>
+    <div class="jumbotron">
+        <h1>Yard-Saling Finder</h1>
+        <p>Brought to you by Derrick, Daniel, Joe and Kal</p>
+      </div>
   <div class="container">
     <div class="row top-30">
       <div class="col-md-4">
@@ -28,9 +32,18 @@
         </div>
       </div>
       <div class="col-md-2">
-        <a class="btn btn-default" href="/addSale">New Yard-Sail</a>
+        <a class="btn btn-primary" href="/addSale">Add a New Yard-Sale</a>
       </div>
+
+      <div class="col-md-4">
+        <input class="form-control" placeholder="Filter by Zip Code" name="srch-term" id="srch-term" type="text">
+      </div>  
+      <div class="col-md-2">
+        <a class="btn btn-success" href="/addSale">Submit</a>
+      </div>
+
     </div>
+    
     <div class="row">
       <div class="col-md-12 blog-container">
       </div>
