@@ -4,7 +4,7 @@
 
 
 
-$(document).ready(function() {
+$(document).ready(function () {
   /* global moment */
   // blogContainer holds all of our posts
   var blogContainer = $(".blog-container");
@@ -21,7 +21,7 @@ $(document).ready(function() {
     if (categoryString) {
       categoryString = "/category/" + categoryString;
     }
-    $.get("/api/yardsales" + categoryString, function(data) {
+    $.get("/api/yardsales" + categoryString, function (data) {
       console.log("Yardsales", data);
       yardsales = data;
       if (!yardsales || !yardsales.length) {
@@ -39,9 +39,9 @@ $(document).ready(function() {
       method: "DELETE",
       url: "/api/yardsales/" + id
     })
-    .then(function() {
-      getPosts(postCategorySelect.val());
-    });
+      .then(function () {
+        getPosts(postCategorySelect.val());
+      });
   }
 
   // Getting the initial list of posts
@@ -68,9 +68,9 @@ $(document).ready(function() {
     deleteBtn.addClass("delete btn btn-danger");
     var editBtn = $("<button>");
     editBtn.text("EDIT");
-    editBtn.addClass("edit btn btn-default");
+    editBtn.addClass("edit btn btn-warning");
     var newPostName = $("<h2>");
-    var newPostAddress = $("<h2>");
+    var newPostAddress = $("<h5>");
     var newPostCity = $("<p>");
     var newPostState = $("<p>");
     var newPostZip = $("<p>");
@@ -78,12 +78,12 @@ $(document).ready(function() {
     var newPostStart = $("<small>");
     var newPostEnd = $("<small>");
     var newPostCategory = $("<h5>");
-    newPostCategory.text(yardsale.category);
+    newPostCategory.text("Category : "+ yardsale.category);
     newPostCategory.css({
       float: "right",
       "font-weight": "700",
       "margin-top":
-      "-15px"
+        "-15px"
     });
     var newPostPanelBody = $("<div>");
     newPostPanelBody.addClass("panel-body");
@@ -93,17 +93,19 @@ $(document).ready(function() {
     newPostCity.text(yardsale.city + " ");
     newPostState.text(yardsale.state + " ");
     newPostZip.text(yardsale.zip + " ");
-    newPostBody.text(yardsale.description);
+    newPostBody.text("Description: "+ yardsale.description);
     // var formattedDate = new Date(post.date + " ");
     // formattedDate = moment(formattedDate).format("MMMM Do YYYY, h:mm:ss a");
-    newPostDate.text(yardsale.yardDate + " ");
+    newPostDate.text("Sale Date :" +yardsale.yardDate + " ");
     newPostStart.text(yardsale.startTime + " ");
     newPostEnd.text(yardsale.endTime + " ");
     newPostAddress.append(newPostCity, newPostState, newPostZip, newPostDate);
+    console.log(newPostAddress);
     // newPostCity.append(newPostState);
     // newPostZip.append(newPostZip);
     newPostPanelHeading.append(deleteBtn);
     newPostPanelHeading.append(editBtn);
+    newPostPanelHeading.append(newPostName);
     newPostPanelHeading.append(newPostAddress);
     newPostPanelHeading.append(newPostCategory);
     newPostPanelBody.append(newPostBody);
