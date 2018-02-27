@@ -54,6 +54,8 @@ $(document).ready(function() {
             return;
         }
 
+        ZipCodeCheck(zipInput.val().trim);
+
         // Constructing a newPost object to hand to the database
         var newPost = {
             submitterName: submitterNameInput.val().trim(),
