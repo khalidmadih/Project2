@@ -32,3 +32,7 @@ button.edit {
   font-weight: 200;
   text-align: center;
 }
+
+#submit-yard {
+  float: right
+}
