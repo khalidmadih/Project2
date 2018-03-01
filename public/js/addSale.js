@@ -139,4 +139,21 @@ $(document).ready(function() {
                 window.location.href = "/sale";
             });
     }
+// time picker JS
+
+$('#startTime').timepicker();
+$('#endTime').timepicker();
+
+// // $('.bootstrap-timepicker').timepicker({
+// //                 template: false,
+// //                 showInputs: false,
+// //                 minuteStep: 5
+// //             });
+
+// $('.bootstrap-timepicker').timepicker({
+//                 minuteStep: 5,
+//                 showInputs: true,
+//                 disableFocus: true
+//             });
+
 });
