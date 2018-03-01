@@ -9,10 +9,15 @@ Application is able to create a yard sale from user's input and post yard sale's
 
 ## Technologies Used
 
-- Node.js
-- MySQL Workbench
-- Node Packages(express, mysql)
-- Bootstrap
+- HTML and CSS (Front-end framework)
+- Bootswatch: theme for Bootstrap
+- Express.js (Server framework)
+- Handlebars (Templating engine)
+- Heroku (Cloud platform)
+- JawsDB (Heroku database add-on)
+- MySQL (RDBMS)
+- Node.js (Javascript environment)
+- Sequelize (ORM)
 
 ## Installation
 
