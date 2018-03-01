@@ -18,7 +18,7 @@ Application is able to create a yard sale from user's input and post yard sale's
 
 To run the application locally, first clone this repository with the following commmand:
     
-    git clone 
+    git clone https://github.com/khalidmadih/Project2.git
 
 Next, intall the application dependencies:
     
