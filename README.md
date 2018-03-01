@@ -10,7 +10,7 @@ Application is able to create a yard sale from user's input and post yard sale's
 ## Technologies Used
 
 - HTML and CSS (Front-end framework)
-- Bootswatch: theme for Bootstrap
+- Bootswatch (Theme for Bootstrap)
 - Express.js (Server framework)
 - Handlebars (Templating engine)
 - Heroku (Cloud platform)
