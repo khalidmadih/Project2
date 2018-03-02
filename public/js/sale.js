@@ -3,15 +3,47 @@
 // ******************************************************************************
 
 $(document).ready(function() {
-   //This section declares the variables that will be used throughout the file.
-   // =============================================================
+    //This section declares the variables that will be used throughout the file.
+    // =============================================================
     var blogContainer = $(".blog-container");
     var postCategorySelect = $("#category");
+    var currentPost;
+    var actionType;
+
     //This section enables the delete, edit and submit buttons when clicked on.
-    $(document).on("click", "button.delete", handlePostDelete);
-    $(document).on("click", "button.edit", handlePostEdit);
-$("#filter-zip").on("submit", handleZipChange)
+
+    // Call to show the modal and fill currentPost object
+    $(document).on("click", "button.actions", function() {
+        currentPost = $(this)
+            .parent()
+            .parent()
+            .data("yardsale");
+        $('#confirmationModal').modal('show');
+    });
+
+    // Call to specify the actionType as delete
+    $(document).on("click", "button.delete", function() {
+        actionType = "delete";
+    });
+
+    // Call to specify the actionType as edit
+    $(document).on("click", "button.edit", function() {
+        actionType = "edit";
+    });
+
+    // Call to confirm the action
+    $(document).on("click", "#confirm", handlePostActions);
+
+    // Call to handle closing of the modal
+    $(document).on("click", "#close", function() {
+        $("#secretCodeInput").val("");
+        $(".error.alert.alert-danger").css("display", "none");
+    });
+
+    // Call to filter by zip codes or c ategory
+    $("#filter-zip").on("submit", handleZipChange)
     postCategorySelect.on("change", handleCategoryChange);
+
     var yardsales;
 
     // This section sets up the getPosts function which pulls information from the database and updates the view in the html file.
@@ -26,29 +58,27 @@ $("#filter-zip").on("submit", handleZipChange)
             yardsales = data;
             if (!yardsales || !yardsales.length) {
                 displayEmpty();
-      }
-      else {
+            } else {
                 initializeRows();
             }
         });
-}
+    }
     //This section sets up the getZips function which works identical to the getPosts function except it pulls from the zip column.
     function getZips(zip) {
-    var zipString = zip || "";
-    if (zipString) {
-      zipString = "/zip/" + zipString;
+        var zipString = zip || "";
+        if (zipString) {
+            zipString = "/zip/" + zipString;
+        }
+        $.get("/api/yardsales" + zipString, function(data) {
+            console.log("Yardsales", data);
+            yardsales = data;
+            if (!yardsales || !yardsales.length) {
+                displayEmpty();
+            } else {
+                initializeRows();
+            }
+        });
     }
-    $.get("/api/yardsales" + zipString, function(data) {
-      console.log("Yardsales", data);
-      yardsales = data;
-      if (!yardsales || !yardsales.length) {
-        displayEmpty();
-      }
-      else {
-        initializeRows();
-      }
-    });
-  }
 
     // This section sets up the deletPost function which does an API call to the database to delete a single post by id.
     function deletePost(id) {
@@ -82,10 +112,10 @@ $("#filter-zip").on("submit", handleZipChange)
         newPostPanelHeading.addClass("panel-heading");
         var deleteBtn = $("<button>");
         deleteBtn.text("x");
-        deleteBtn.addClass("delete btn btn-danger");
+        deleteBtn.addClass("delete btn btn-danger actions");
         var editBtn = $("<button>");
         editBtn.text("EDIT");
-        editBtn.addClass("edit btn btn-warning");
+        editBtn.addClass("edit btn btn-warning actions");
         var newPostName = $("<h2>");
         var newPostAddress = $("<h5>");
         var newPostCity = $("<p>");
@@ -111,7 +141,7 @@ $("#filter-zip").on("submit", handleZipChange)
         newPostStart.text("Start Time : " + yardsale.startTime + " ");
         newPostEnd.text("- End Time : " + yardsale.endTime + " ");
         newPostAddress.append(", " + yardsale.city + ", " + yardsale.state + ", " + yardsale.zip);
-        
+
         console.log(newPostAddress);
 
         newPostPanelHeading.append(deleteBtn);
@@ -128,23 +158,22 @@ $("#filter-zip").on("submit", handleZipChange)
         return newPostPanel;
     }
 
-    // This section sets up the handlePostDelete function which deciphers which post to delete and calls
-    //  the deletePost function referenced above.
-    function handlePostDelete() {
-        var currentPost = $(this)
-            .parent()
-            .parent()
-            .data("yardsale");
-        deletePost(currentPost.id);
-    }
+    // Depending on the Action type this function either deletes or edits the post
+    function handlePostActions() {
+        // console.log("Hi im here");
+        // console.log(currentPost.secretCode);
+        // console.log(actionType);
+        if (currentPost.secretCode == $("#secretCodeInput").val()) {
+            $(".error.alert.alert-danger").css("display", "none");
+            if (actionType == "edit")
+                window.location.href = "/addSale?yardsale_id=" + currentPost.id;
+            else if (actionType == "delete")
+                deletePost(currentPost.id);
+            $("#secretCodeInput").val("");
+            $('#confirmationModal').modal('hide');
 
-    // This section sets up the handlePostEdit function which works the same as the handlePostDelete function.
-    function handlePostEdit() {
-        var currentPost = $(this)
-            .parent()
-            .parent()
-            .data("yardsale");
-        window.location.href = "/addSale?yardsale_id=" + currentPost.id;
+        } else
+            $(".error.alert.alert-danger").css("display", "block");
     }
 
     // This section sets up the display Empty function which displays a messgae when there is no yard sale information for a particular category.
@@ -164,12 +193,12 @@ $("#filter-zip").on("submit", handleZipChange)
 
     //This section sets up the handleZipChange function which searches for zip codes 
     //using the search section and filters the results based on the search input.
-  function handleZipChange(e) {
-    e.preventDefault();
-    var newPostZip = $("#srch-term").val().trim(); 
-    console.log(newPostZip);
-    getZips(newPostZip);
+    function handleZipChange(e) {
+        e.preventDefault();
+        var newPostZip = $("#srch-term").val().trim();
+        console.log(newPostZip);
+        getZips(newPostZip);
 
-  }
+    }
 
 });
