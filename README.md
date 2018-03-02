@@ -9,16 +9,21 @@ Application is able to create a yard sale from user's input and post yard sale's
 
 ## Technologies Used
 
-- Node.js
-- MySQL Workbench
-- Node Packages(express, mysql)
-- Bootstrap
+- HTML and CSS (Front-end framework)
+- Bootswatch (Theme for Bootstrap)
+- Express.js (Server framework)
+- Handlebars (Templating engine)
+- Heroku (Cloud platform)
+- JawsDB (Heroku database add-on)
+- MySQL (RDBMS)
+- Node.js (Javascript environment)
+- Sequelize (ORM)
 
 ## Installation
 
 To run the application locally, first clone this repository with the following commmand:
     
-    git clone 
+    git clone https://github.com/khalidmadih/Project2.git
 
 Next, intall the application dependencies:
     
@@ -37,4 +42,3 @@ On Heroku app:
 ## Running the tests
 
 Chai and Mocha are used to test the function and the function determines if the input are numbers.
-
