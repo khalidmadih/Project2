@@ -1,8 +1,3 @@
-// ******************************************************************************
-//This file is to configure and connect to the mysql database.
-//The production portion is connected to JAWSDB which enables the application to be deployed to Heroku.
-// ******************************************************************************
-
 {
   "development": {
     "username": "root",
