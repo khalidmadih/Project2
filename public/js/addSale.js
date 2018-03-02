@@ -46,6 +46,7 @@ $(document).ready(function() {
             !secretCodeInput.val().trim()) {
             return;
         }
+
         
 
         // This section constructs a newPost of yardsale field objects to send to the mySQL database.
@@ -123,5 +124,6 @@ $(document).ready(function() {
 // =============================================================
 $('#startTime').timepicker();
 $('#endTime').timepicker();
+
 
 });

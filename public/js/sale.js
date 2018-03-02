@@ -14,7 +14,6 @@ $("#filter-zip").on("submit", handleZipChange)
     postCategorySelect.on("change", handleCategoryChange);
     var yardsales;
 
-
     // This section sets up the getPosts function which pulls information from the database and updates the view in the html file.
     // =============================================================
     function getPosts(category) {
@@ -33,8 +32,8 @@ $("#filter-zip").on("submit", handleZipChange)
             }
         });
 }
-
-    //This section sets up the getZips function which works identical to the getPosts function except it pulls from the zip column.    function getZips(zip) {
+    //This section sets up the getZips function which works identical to the getPosts function except it pulls from the zip column.
+    function getZips(zip) {
     var zipString = zip || "";
     if (zipString) {
       zipString = "/zip/" + zipString;
@@ -51,7 +50,8 @@ $("#filter-zip").on("submit", handleZipChange)
     });
   }
 
-    // This section sets up the deletPost function which does an API call to the database to delete a single post by id.    function deletePost(id) {
+    // This section sets up the deletPost function which does an API call to the database to delete a single post by id.
+    function deletePost(id) {
         $.ajax({
                 method: "DELETE",
                 url: "/api/yardsales/" + id
