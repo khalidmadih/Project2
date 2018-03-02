@@ -1,18 +1,18 @@
 // *********************************************************************************
-// api-routes.js - this file offers a set of routes for displaying and saving data to the db
+// api-routes.js - this file sets up all of the api call routes to the database
 // *********************************************************************************
 
 // Dependencies
 // =============================================================
 
-// Requiring our Todo model
+// This section creates a variable and requires the models folder to access the files within that folder.
 var db = require("../models");
 
-// Routes
+// This section sets up all of the get routes used to pull and post information to the database.
 // =============================================================
 module.exports = function(app) {
 
-  // GET route for getting all of the posts
+  // This section creates the GET route for getting all information from the yardsale table.
   app.get("/api/yardsales/", function(req, res) {
     db.Yardsale.findAll({})
     .then(function(dbYardsale) {
@@ -20,7 +20,7 @@ module.exports = function(app) {
     });
   });
 
-  // Get route for returning posts of a specific category
+  // This section creates a Get route for returning yardsale posts of the category column.
   app.get("/api/yardsales/category/:category", function(req, res) {
     db.Yardsale.findAll({
       where: {
@@ -32,7 +32,19 @@ module.exports = function(app) {
     });
   });
 
-  // Get rotue for retrieving a single post
+  //This section creates a Get route for returning yardsale posts of the zip column.
+  app.get("/api/yardsales/zip/:zip", function(req, res) {
+    db.Yardsale.findAll({
+      where: {
+        zip: req.params.zip
+      }
+    })
+    .then(function(dbYardsale) {
+      res.json(dbYardsale);
+    });
+  });
+
+  // This section creates a Get rotue for retrieving single yardsale posts by id.
   app.get("/api/yardsales/:id", function(req, res) {
     db.Yardsale.findOne({
       where: {
@@ -44,7 +56,7 @@ module.exports = function(app) {
     });
   });
 
-  // POST route for saving a new post
+  //This section creates a POST route for saving a new yardsale post.
   app.post("/api/yardsales", function(req, res) {
     console.log(req.body);
     db.Yardsale.create({
@@ -68,7 +80,7 @@ module.exports = function(app) {
     });
   });
 
-  // DELETE route for deleting posts
+  // This section creates a DELETE route for deleting yardsale posts by id.
   app.delete("/api/yardsales/:id", function(req, res) {
     db.Yardsale.destroy({
       where: {
@@ -80,7 +92,7 @@ module.exports = function(app) {
     });
   });
 
-  // PUT route for updating posts
+  // This section creats a PUT route that allows the user to update a yardsale post.
   app.put("/api/yardsales", function(req, res) {
     db.Yardsale.update(req.body,
       {

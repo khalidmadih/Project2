@@ -1,7 +1,7 @@
 {
-  "name": "blog-crud",
+  "name": "Yard-Saling-Finder-APP",
   "version": "1.0.0",
-  "description": "",
+  "description": "Find and submit Yard Sales",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,11 +9,13 @@
     "watch": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Khalid, Derrick, Daniel and Joe",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "chai": "^4.1.2",
     "express": "^4.14.0",
+    "mysql": "^2.15.0",
     "mysql2": "^1.3.6",
     "sequelize": "^4.3.1"
   }

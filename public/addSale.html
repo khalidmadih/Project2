@@ -1,6 +1,3 @@
-<!--changed cms.html to addSale.html-->
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,69 +9,106 @@
     <link rel="stylesheet" href="css/styles.css" media="screen" title="no title">
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!-- SmartyStreets code -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/5.1/jquery.liveaddress.min.js"></script>
+    <script type="text/javascript" src="https://jdewit.github.io/bootstrap-timepicker/js/bootstrap-timepicker.js" ></script>
+    <script>
+    var liveaddress = $.LiveAddress({
+        key: "4185978093280536",
+        debug: false,
+        target: "US",
+        autocomplete: 5,
+        autoverify: false,
+        addresses: [{
+            address1: '#address',
+            locality: '#city',
+            administrative_area: '#state',
+            postal_code: '#zip',
+            country: 'USA'
+        }]
+    });
+    </script>
 </head>
 
 <body>
+    <div class="jumbotron">
+        <h1>Yard-Sale Finder</h1>
+        <p>Brought to you by Derrick, Daniel, Joe and Kal</p>
+    </div>
     <div class="container">
         <div class="row">
             <div class="row">
                 <div class="col-md-2 col-sm-2 top-30">
-                    <a class="btn btn-default" href="/sale">Go to Yard Sales</a>
+                    <a class="btn btn-primary" href="/sale">Go back to Yard Sales</a>
                 </div>
             </div>
-            <!-- <div class="form-group">
-                <label for="category">Select Category:</label>
-                <select class="form-control" id="category">
-                    <option value="Yard Sale">Yard Sale</option>
-                    <option value="Garage Sale">Garage Sale</option>
-                    <option value="Estate Sale">Estate Sale</option>
-                </select>
-            </div>
-            <br />
-            <button type="submit" class="btn btn-success submit">Submit</button>
-        </div> -->
-        <div class="col-md-6 col-md-offset-3">
-            <form id="cms">
-                <div class="form-group">
-                    <label for="SubmitterName">Name:</label>
-                    <input type="text" class="form-control" id="submitterName">
-                    <br />
-                    <label for="YardDate">Date:</label>
-                    <input type="text" class="form-control" id="yardDate">
-                    <label for="StartTime">Start Time:</label>
-                    <input type="text" class="form-control" id="startTime">
-                    <label for="EndTime">Ending:</label>
-                    <input type="text" class="form-control" id="endTime">
-                    <label for="Address">Address:</label>
-                    <input type="text" class="form-control" id="address">
-                    <label for="City">City:</label>
-                    <input type="text" class="form-control" id="city">
-                    <label for="State">State:</label>
-                    <input type="text" class="form-control" id="state">
-                    <label for="Zip">Zip:</label>
-                    <input type="text" class="form-control" id="zip">
-                    <label for="Email">Email:</label>
-                    <input type="text" class="form-control" id="email">
-                    <label for="SecretCode">Code:</label>
-                    <input type="text" class="form-control" id="secretCode">
-                    <label for="Description">Description:</label>
-                    <textarea class="form-control" rows="10" id="description"></textarea>
-                    <br>
+        </div>
+        <!--This section is where all of the input fields are created-->
+        <div class="row">
+            <div class="col-md-12">
+                <form id="cms">
                     <div class="form-group">
-                <label for="category">Select Category:</label>
-                <select class="form-control" id="category">
-                    <option value="Yard Sale">Yard Sale</option>
-                    <option value="Garage Sale">Garage Sale</option>
-                    <option value="Estate Sale">Estate Sale</option>
-                </select>
+                        <div class="col-md-6">
+                            <label for="SubmitterName">Yard Title:</label>
+                            <input type="text" class="form-control" id="submitterName">
+                            <label for="YardDate">Yard Date:</label>
+                            <input type="date" class="form-control" id="yardDate">
+                            <label for="StartTime">Start Time:</label>
+                            <div class="input-group bootstrap-timepicker">
+                                <input type="text" class="form-control input-small" id="startTime">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                            </div>
+                            <!-- <input type="text" class="form-control" id="startTime"> -->
+                            <label for="EndTime">End Time:</label>
+                            <div class="input-group bootstrap-timepicker">
+                                <input type="text" class="form-control input-small" id="endTime">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                            </div>
+                           
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Address">Address:</label>
+                            <input type="text" class="form-control" id="address">
+                            <label for="City">City:</label>
+                            <input type="text" class="form-control" id="city">
+                            <label for="State">State:</label>
+                            <input type="text" class="form-control" id="state">
+                            <label for="Zip">Zip:</label>
+                            <input type="text" class="form-control" id="zip">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Email">Your Email:</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="SecretCode">Your Secret Edit Code:</label>
+                            <input type="text" class="form-control" id="secretCode">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="Description">Description:</label>
+                            <textarea class="form-control" rows="5" id="description"></textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="category">Select a Category for Your Sale:</label>
+                                <select class="form-control" id="category">
+                                    <option value="Yard Sale">Yard Sale</option>
+                                    <option value="Garage Sale">Garage Sale</option>
+                                    <option value="Estate Sale">Estate Sale</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <br>
+                            <input id="submit-yard" type="submit" class="btn btn-success submit" value="Submit my Yard Sale">
+                        </div>
+                    </div>
+                    <br>
+                </form>
             </div>
-            <br />
-            <button type="submit" class="btn btn-success submit">Submit</button>
         </div>
-        <br>
-            </form>
-            </div>
-        </div>
+    </div>
     </div>
     <!-- Custom Script -->
     <script src="js/addSale.js" type="text/javascript"></script>

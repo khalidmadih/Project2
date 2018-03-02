@@ -2,26 +2,25 @@
 // html-routes.js - this file offers a set of routes for sending users to the various html pages
 // *********************************************************************************
 
-// Dependencies
+// This section states the Dependencies used in this file
 // =============================================================
 var path = require("path");
 
-// Routes
+// This section outlines the Routes for the different html pages.
 // =============================================================
 module.exports = function(app) {
 
-  // Each of the below routes just handles the HTML page that the user gets sent to.
-
-  // index route loads view.html
+    // This section sets up the route which sends the user to the sale.html page when "/" is loaded.
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/sale.html"));
   });
 
+  //This section sets up the route that sends the user to the addSale.html file when "/addSale" is loaded.
   app.get("/addSale", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/addSale.html"));
   });
 
-  // sale route loads sale.html
+  // This section sets up the sale route which loads the sale.html file.
   app.get("/sale", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/sale.html"));
   });

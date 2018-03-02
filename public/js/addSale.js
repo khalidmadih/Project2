@@ -1,28 +1,22 @@
-//******ALL MY COMMENTS ARE IN CAPS*******//
-
-// CHANGED FILE NAME FROM cms.js TO addSale.js//
-
+// ******************************************************************************
+//This file adds the jQuery for the addSale.html file//
+// ******************************************************************************
 
 $(document).ready(function() {
-    // Gets an optional query string from our url (i.e. ?post_id=23)
+    //This section sets up all of the variables that will be used throughout the file. 
+    // =============================================================
     var url = window.location.search;
     var postId;
-    // Sets a flag for whether or not we're updating a post to be false initially
     var updating = false;
 
-    // If we have this section in our url, we pull out the post id from the url
-    // In localhost:8080/cms?post_id=1, postId is 1
+    
     if (url.indexOf("?yardsale_id=") !== -1) {
         postId = url.split("=")[1];
         getPostData(postId);
     }
 
-    // Getting jQuery references to the post body, title, form, and category select
+    // This section declares all jQuery variable references to each new yard sale field.
 
-    // OLD VARIABLE INPUTS //
-    //var itemsInput = $("#items");
-    //var addressInput = $("#address");
-    //var dateInput = $("#date");
 
     var submitterNameInput = $("#submitterName");
     var yardDateInput = $("#yardDate");
@@ -35,16 +29,15 @@ $(document).ready(function() {
     var zipInput = $("#zip");
     var emailInput = $("#email");
     var secretCodeInput = $("#secretCode");
-
-
     var cmsForm = $("#cms");
     var postCategorySelect = $("#category");
-    // Giving the postCategorySelect a default value
     postCategorySelect.val("Yard Sale");
-    // Adding an event listener for when the form is submitted
+    
+
+    // This section adds the event listener for when the form is submitted
     $(cmsForm).on("submit", function handleFormSubmit(event) {
         event.preventDefault();
-        // Wont submit the post if we are missing a body or a title
+        // This section is arranged to prevent the page from submitting if each of the following fields does not have information in it.
         if (!submitterNameInput.val().trim() || !yardDateInput.val().trim() ||
             !startTimeInput.val().trim() || !endTimeInput.val().trim() ||
             !descriptionInput.val().trim() || !addressInput.val().trim() ||
@@ -54,7 +47,10 @@ $(document).ready(function() {
             return;
         }
 
-        // Constructing a newPost object to hand to the database
+        
+
+        // This section constructs a newPost of yardsale field objects to send to the mySQL database.
+        // =============================================================
         var newPost = {
             submitterName: submitterNameInput.val().trim(),
             yardDate: yardDateInput.val().trim(),
@@ -67,18 +63,13 @@ $(document).ready(function() {
             zip: zipInput.val().trim(),
             email: emailInput.val().trim(),
             secretCode: secretCodeInput.val().trim(),
-            // CHANGING DATE TO YARDDATE, MAY NEED TO CHANGE ON DATABASE???//
-
-            //date: dateInput.val().trim()
-            //NO ITEMS INPUT, SHOULD WE CHANGE THIS TO DESCRIPTION???//
-            //items: itemsInput.val().trim(),
             category: postCategorySelect.val()
         };
 
         console.log(newPost);
 
-        // If we're updating a post run updatePost to update a post
-        // Otherwise run submitPost to create a whole new post
+        // This section executes an IF/Else statement in which if a post is being update it will run updatePost
+        // Otherwise it willI run submitPost to create a new post.
         if (updating) {
             newPost.id = postId;
             updatePost(newPost);
@@ -87,18 +78,19 @@ $(document).ready(function() {
         }
     });
 
-    // Submits a new post and brings user to sale page upon completion
+    // This section submits a new yard sale post and brings user to sale.html page upon pushing the submit button.
+    // =============================================================
     function submitPost(Yardsale) {
         $.post("/api/yardsales/", Yardsale, function() {
             window.location.href = "/sale";
         });
     }
 
-    // Gets post data for a post if we're editing
+    // This section sets up the getPostData function for updating/editing a yard sale post.
     function getPostData(id) {
         $.get("/api/yardsales/" + id, function(data) {
             if (data) {
-                // If this post exists, prefill our cms forms with its data
+                
                 submitterNameInput.val(data.submitterName);
                 yardDateInput.val(data.yardDate);
                 startTimeInput.val(data.startTime);
@@ -110,23 +102,13 @@ $(document).ready(function() {
                 zipInput.val(data.zip);
                 emailInput.val(data.email);
                 secretCodeInput.val(data.secretCode);
-
-                // addressInput.val(data.address);
-                // CHANGING DATE TO YARDDATE, MAY NEED TO CHANGE ON DATABASE???//
-
-                // dateInput.val(data.date);
-                // yardDateInput.val(data.yardDate);
-                //NO ITEMS INPUT SHOULD WE CHANGE THIS TO DESCRIPTION???//
-                //itemsInput.val(data.items);
                 postCategorySelect.val(data.category);
-                // If we have a post with this id, set a flag for us to know to update the post
-                // when we hit submit
                 updating = true;
             }
         });
     }
 
-    // Update a given post, bring user to the sale page when done
+    // This section sets up the updatePost function which we will be called in order to update a yardsale and bring user to the sale.html page when finished.
     function updatePost(yardsale) {
         $.ajax({
                 method: "PUT",
@@ -137,4 +119,11 @@ $(document).ready(function() {
                 window.location.href = "/sale";
             });
     }
+// time picker JS
+//This section sets up the jQueary calls that enable the use of the Timepicker library for the start and end times.
+// =============================================================
+$('#startTime').timepicker();
+$('#endTime').timepicker();
+
+
 });

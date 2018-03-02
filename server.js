@@ -1,39 +1,40 @@
 // *****************************************************************************
-// Server.js - This file is the initial starting point for the Node/Express server.
+// Server.js - This file is the initial starting point for the Node/Express server for the application.
 //
 // ******************************************************************************
-// *** Dependencies
+// This section displays the dependencies used for this file.
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
 
-// Sets up the Express App
+// This section sets up the Express App as well as the port for the application.
 // =============================================================
 var app = express();
 var PORT = process.env.PORT || 8080;
 
-// Requiring our models for syncing
+// This section requires the models folder.
 var db = require("./models");
 
-// Sets up the Express app to handle data parsing
+// This section sets up the use of the Express app to handle data parsing.
 
-// parse application/x-www-form-urlencoded
+// This section sets up the use of the body- parser application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
+// It also sets up the parse application/json.
 app.use(bodyParser.json());
 
-// Static directory
+// This section sets up the use of the Static directory
 app.use(express.static("public"));
 
-// Routes
+// This section sets up the use of the Routes.
 // =============================================================
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 
-// Syncing our sequelize models and then starting our Express app
+// This section sets up the syncing of the sequelize models and also starts the Express app.
 // =============================================================
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+

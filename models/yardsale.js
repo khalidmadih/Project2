@@ -1,5 +1,7 @@
-//changed file name from post.js to yardsale.js//
-
+// ******************************************************************************
+//This file holds the Sequelize data which creates the table and columns into our mySQL database 
+//using Sequelize.
+// ******************************************************************************
 
 module.exports = function(sequelize, DataTypes) {
     var Yardsale = sequelize.define("Yardsale", {
