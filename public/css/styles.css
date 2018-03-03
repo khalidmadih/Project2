@@ -2,10 +2,6 @@ button.submit {
   float: right;
 }
 
-form#cms {
-  margin-top: 50px;
-}
-
 #cms textarea {
   resize: none;
 }
@@ -38,6 +34,11 @@ button.edit {
 
 #submit-yard {
   float: right
+}
+
+#filter-zip .col-xs-8 {
+   padding-left: 0px;
+    margin-bottom: 15px;
 }
 
 /*Time Picker CSS*/

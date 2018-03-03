@@ -12,7 +12,6 @@ Application is able to create a yard sale from user's input and post yard sale's
 - HTML and CSS (Front-end framework)
 - Bootswatch (Theme for Bootstrap)
 - Express.js (Server framework)
-- Handlebars (Templating engine)
 - Heroku (Cloud platform)
 - JawsDB (Heroku database add-on)
 - MySQL (RDBMS)

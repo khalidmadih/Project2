@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add a Yard Sale</title>
     <!-- Latest compiled and minified CSS & JS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +14,7 @@
     <!-- SmartyStreets code -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//d79i1fxsrar4t.cloudfront.net/jquery.liveaddress/5.1/jquery.liveaddress.min.js"></script>
-    <script type="text/javascript" src="https://jdewit.github.io/bootstrap-timepicker/js/bootstrap-timepicker.js" ></script>
+    <script type="text/javascript" src="https://jdewit.github.io/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
     <script>
     var liveaddress = $.LiveAddress({
         key: "4185978325395997",
@@ -38,16 +40,14 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="row">
-                <div class="col-md-2 col-sm-2 top-30">
-                    <a class="btn btn-primary" href="/sale">Go back to Yard Sales</a>
-                </div>
+            <div class="col-md-2 col-sm-2">
+                <a class="btn btn-primary" href="/sale">Go back to Yard Sales</a>
             </div>
         </div>
         <!--This section is where all of the input fields are created-->
         <div class="row">
             <div class="col-md-12">
-                <form id="cms">
+                <form id="cms" class="top-10">
                     <div class="form-group">
                         <div class="col-md-6">
                             <label for="SubmitterName">Yard Title:</label>
@@ -65,7 +65,6 @@
                                 <input type="text" class="form-control input-small" id="endTime">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                             </div>
-
                         </div>
                         <div class="col-md-6">
                             <label for="Address">Address:</label>

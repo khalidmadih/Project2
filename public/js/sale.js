@@ -129,7 +129,7 @@ $(document).ready(function() {
         newPostCategory.css({
             float: "right",
             "font-weight": "700",
-            "margin-top": "-15px"
+            "margin-top": "10px"
         });
         var newPostPanelBody = $("<div>");
         newPostPanelBody.addClass("panel-body");
