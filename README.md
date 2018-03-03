@@ -12,7 +12,7 @@ Application is able to create a yard sale from user's input and post yard sale's
 - HTML and CSS (Front-end framework)
 - Bootswatch (Theme for Bootstrap)
 - Time Picker (Bootstrap Timepicker)
-- SmartyStreets (Auto-Fill & Address Validation)
+- SmartyStreets API (Auto-Fill & Address Validation)
 - Express.js (Server framework)
 - Heroku (Cloud platform)
 - JawsDB (Heroku database add-on)
