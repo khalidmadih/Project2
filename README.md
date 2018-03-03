@@ -37,7 +37,7 @@ Now, open the local application on port 8080 at the URL: 'http://localhost:8080/
 
 On Heroku app:
 
-    go here: https://calm-eyrie-79069.herokuapp.com/
+    go here: https://protected-peak-32558.herokuapp.com/
 
 ## Running the tests
 
